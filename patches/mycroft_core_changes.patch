@@ -25,7 +25,7 @@ index afdbd27..cdbadba 100644
    // General skill values
    "skills": {
 diff --git a/scripts/prepare-msm.sh b/scripts/prepare-msm.sh
-index 2d8ae84..46e073c 100755
+index 2d8ae84..e090888 100755
 --- a/scripts/prepare-msm.sh
 +++ b/scripts/prepare-msm.sh
 @@ -14,7 +14,7 @@
@@ -37,15 +37,17 @@ index 2d8ae84..46e073c 100755
  skills_dir="${mycroft_root_dir}"/skills
  # exit on any error
  set -Ee
-@@ -40,7 +40,7 @@ function change_ownership {
+@@ -40,8 +40,8 @@ function change_ownership {
  
  if [[ ${IS_TRAVIS} != true ]]; then
      if [ ! -d ${skills_dir} ]; then
 -        echo "Create /opt/mycroft/skills"
+-        sudo mkdir -p ${skills_dir}
 +        echo "Create $skills_dir"
-         sudo mkdir -p ${skills_dir}
++        mkdir -p ${skills_dir}
  	change_ownership
      fi
+ 
 @@ -51,6 +51,6 @@ if [[ ${IS_TRAVIS} != true ]]; then
  fi
  
