@@ -1,0 +1,69 @@
+diff --git a/mycroft/configuration/config.py b/mycroft/configuration/config.py
+index 8ffcc7b..92a7bda 100644
+--- a/mycroft/configuration/config.py
++++ b/mycroft/configuration/config.py
+@@ -149,7 +149,7 @@ class RemoteConf(LocalConf):
+     def __init__(self, cache=None):
+         super(RemoteConf, self).__init__(None)
+ 
+-        cache = cache or '/var/tmp/mycroft_web_cache.json'
++        cache = cache or '/home/phablet/.cache/mycroft.hummlbach/mycroft_web_cache.json'
+         from mycroft.api import is_paired
+         if not is_paired():
+             self.load_local(cache)
+diff --git a/mycroft/configuration/mycroft.conf b/mycroft/configuration/mycroft.conf
+index afdbd27..cdbadba 100644
+--- a/mycroft/configuration/mycroft.conf
++++ b/mycroft/configuration/mycroft.conf
+@@ -85,7 +85,7 @@
+   },
+ 
+   // Also change in scripts/prepare-msm.sh
+-  "data_dir": "/opt/mycroft",
++  "data_dir": "/home/phablet/.local/share/mycroft.hummlbach",
+   
+   // General skill values
+   "skills": {
+diff --git a/scripts/prepare-msm.sh b/scripts/prepare-msm.sh
+index 2d8ae84..46e073c 100755
+--- a/scripts/prepare-msm.sh
++++ b/scripts/prepare-msm.sh
+@@ -14,7 +14,7 @@
+ # See the License for the specific language governing permissions and
+ # limitations under the License.
+ 
+-mycroft_root_dir='/opt/mycroft'  # Also change in configuration
++mycroft_root_dir='/home/phablet/.local/share/mycroft.hummlbach'  # Also change in configuration
+ skills_dir="${mycroft_root_dir}"/skills
+ # exit on any error
+ set -Ee
+@@ -40,7 +40,7 @@ function change_ownership {
+ 
+ if [[ ${IS_TRAVIS} != true ]]; then
+     if [ ! -d ${skills_dir} ]; then
+-        echo "Create /opt/mycroft/skills"
++        echo "Create $skills_dir"
+         sudo mkdir -p ${skills_dir}
+ 	change_ownership
+     fi
+@@ -51,6 +51,6 @@ if [[ ${IS_TRAVIS} != true ]]; then
+ fi
+ 
+ # fix ownership of ${mycroft_root_dir} if it is not owned by the ${setup_user}
+-if [[ `stat -c "%U:%G" /opt/mycroft` != "${setup_user}:${setup_user}" ]]; then
++if [[ `stat -c "%U:%G" $mycroft_root_dir` != "${setup_user}:${setup_user}" ]]; then
+     change_ownership
+ fi
+diff --git a/skiller.sh b/skiller.sh
+index a1c2168..6cbc6ae 100755
+--- a/skiller.sh
++++ b/skiller.sh
+@@ -55,7 +55,7 @@ input_lines() {
+     printf -v $var_name "$lines"  # $var_name=$lines
+ }
+ 
+-skills_dir=/opt/mycroft/skills
++skills_dir=/home/phablet/.local/share/mycroft.hummlbach/skills
+ 
+ if [ "$#" -gt "2" ] || [ "$1" = "-h" ]; then
+     echo "Usage: $0"
