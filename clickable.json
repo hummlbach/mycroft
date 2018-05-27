@@ -1,0 +1,4 @@
+{
+  "template": "qmake",
+  "postbuild": "cd .. && ./scripts/setup_dist.sh"
+}

@@ -1,0 +1,7 @@
+[Desktop Entry]
+Name=MyCroft
+Exec=mycroft.hummlbach
+Icon=icon.png
+Terminal=false
+Type=Application
+X-Ubuntu-Touch=true

@@ -44,7 +44,7 @@ multiarch_list = ["arm-linux-gnueabihf"]
 
 target_directory = 'deps/arm-linux-gnueabihf'
 
-packages = ['flac', 'libportaudio2', 'git', 'build-essential']
+packages = ['flac', 'libportaudio2', 'git', 'build-essential', 'libcurl-dev']
 
 
 def copy_tree(src, dest, preserve_symlinks=False):
