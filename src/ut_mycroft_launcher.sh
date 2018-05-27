@@ -14,6 +14,7 @@ fi
 cd $MYCROFT_CORE_PATH
 
 export PATH=$MYCROFT_DEPS_PATH/bin:$PATH
+export PATH=$MYCROFT_DEPS_PATH//lib/git-core:$PATH
 export LD_LIBRARY_PATH=$MYCROFT_DEPS_PATH/lib/:$MYCROFT_DEPS_PATH/lib/arm-linux-gnueabihf:$LD_LIBRARY_PATH
 
 ./start-mycroft.sh debug
