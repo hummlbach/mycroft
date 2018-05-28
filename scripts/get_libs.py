@@ -42,9 +42,9 @@ arch_list = ['armhf']
 # in contents of click package
 multiarch_list = ["arm-linux-gnueabihf"]
 
-target_directory = 'deps/arm-linux-gnueabihf'
+target_directory = '../dist/mycroft-dependencies'
 
-packages = ['flac', 'libportaudio2', 'git', 'build-essential', 'libcurl-dev']
+packages = ['flac', 'libportaudio2', 'git', 'build-essential', 'libcurl3']
 
 
 def copy_tree(src, dest, preserve_symlinks=False):

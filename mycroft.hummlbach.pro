@@ -5,7 +5,8 @@ load(ubuntu-click)
 
 QT += qml quick
 
-SOURCES += src/main.cpp
+SOURCES += src/main.cpp \
+    mycroftcontrol.cpp
 
 RESOURCES += src/qml/qml.qrc
 
@@ -25,6 +26,14 @@ OTHER_FILES += $${CONF_FILES} \
                $${AP_TEST_FILES} \
                click/mycroft.hummlbach.desktop \
                click/manifest.json
+
+HELPER_SCRIPTS += src/ut_mycroft_launcher.sh \
+                  src/ut_mycroft_installer.sh
+
+# specify where the scripts are installed to
+script_files.path = /scripts
+script_files.files += $${HELPER_SCRIPTS}
+INSTALLS+=script_files
 
 # specify where the config files are installed to
 config_files.path = /
@@ -55,3 +64,6 @@ UBUNTU_TRANSLATION_SOURCES+= \
 # specifies all translations files and makes sure they are
 # compiled and installed into the right place in the click package
 UBUNTU_PO_FILES+=$$files(po/*.po)
+
+HEADERS += \
+    mycroftcontrol.h
