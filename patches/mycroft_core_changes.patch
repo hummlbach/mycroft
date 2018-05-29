@@ -12,7 +12,7 @@ index 8ffcc7b..92a7bda 100644
          if not is_paired():
              self.load_local(cache)
 diff --git a/mycroft/configuration/mycroft.conf b/mycroft/configuration/mycroft.conf
-index afdbd27..cdbadba 100644
+index afdbd27..adef84c 100644
 --- a/mycroft/configuration/mycroft.conf
 +++ b/mycroft/configuration/mycroft.conf
 @@ -85,7 +85,7 @@
@@ -24,8 +24,26 @@ index afdbd27..cdbadba 100644
    
    // General skill values
    "skills": {
+@@ -228,7 +228,7 @@
+     // Engine.  Options: "mimic", "google", "marytts", "fatts", "espeak", "spdsay"
+     "module": "mimic",
+     "mimic": {
+-      "voice": "ap"
++      "voice": "slt"
+     },
+     "espeak": {
+       "lang": "english-us",
+@@ -237,7 +237,7 @@
+   },
+ 
+   "padatious": {
+-    "intent_cache": "~/.mycroft/intent_cache",
++    "intent_cache": "~/.cache/mycroft.hummlbach/intent_cache",
+     "train_delay": 4
+   },
+   // =================================================================
 diff --git a/scripts/prepare-msm.sh b/scripts/prepare-msm.sh
-index 2d8ae84..e090888 100755
+index 2d8ae84..628a04a 100755
 --- a/scripts/prepare-msm.sh
 +++ b/scripts/prepare-msm.sh
 @@ -14,7 +14,7 @@
@@ -37,7 +55,15 @@ index 2d8ae84..e090888 100755
  skills_dir="${mycroft_root_dir}"/skills
  # exit on any error
  set -Ee
-@@ -40,8 +40,8 @@ function change_ownership {
+@@ -34,14 +34,15 @@ setup_group=$( id -gn $USER )
+ # change ownership of ${mycroft_root_dir} to ${setup_user } recursively 
+ function change_ownership {
+     echo "Changing ownership of" ${mycroft_root_dir} "to user:" ${setup_user} "with group:" ${setup_group}
+-            sudo chown -Rvf ${setup_user}:${setup_group} ${mycroft_root_dir}
++# this wont work on UT - we have to install it right in the first place
++#    sudo chown -Rvf ${setup_user}:${setup_group} ${mycroft_root_dir}
+ }
+ 
  
  if [[ ${IS_TRAVIS} != true ]]; then
      if [ ! -d ${skills_dir} ]; then
@@ -48,7 +74,7 @@ index 2d8ae84..e090888 100755
  	change_ownership
      fi
  
-@@ -51,6 +51,6 @@ if [[ ${IS_TRAVIS} != true ]]; then
+@@ -51,6 +52,6 @@ if [[ ${IS_TRAVIS} != true ]]; then
  fi
  
  # fix ownership of ${mycroft_root_dir} if it is not owned by the ${setup_user}

@@ -5,8 +5,11 @@ load(ubuntu-click)
 
 QT += qml quick
 
+CONFIG += c++11
+QMAKE_CXXFLAGS += -fpermissive
+
 SOURCES += src/main.cpp \
-    mycroftcontrol.cpp
+           src/mycroftcontrol.cpp
 
 RESOURCES += src/qml/qml.qrc
 
@@ -66,4 +69,5 @@ UBUNTU_TRANSLATION_SOURCES+= \
 UBUNTU_PO_FILES+=$$files(po/*.po)
 
 HEADERS += \
-    mycroftcontrol.h
+    src/mycroftcontrol.h
+

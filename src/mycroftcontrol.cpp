@@ -8,17 +8,29 @@ const QString MYCROFT_STOP_SCRIPT_PATH = QStringLiteral("/home/phablet/.local/sh
 
 const QString INSTALL_SCRIPT_PATH = QStringLiteral("/opt/click.ubuntu.com/mycroft.hummlbach/current/");
 
-MyCroftControl::MyCroftControl(QObject *parent) : QObject(parent)
+MyCroftControl::MyCroftControl(QObject *parent = nullptr) : QObject(parent)
 {
 }
 
-void MyCroftControl::toggleOn()
+/*void MyCroftControl::toggleOn()
 {
     QProcess::startDetached(MYCROFT_START_SCRIPT_PATH);
-}
+}*/
 
-void MyCroftControl::toggleOff()
+void MyCroftControl::setRunning(bool shallRun)
 {
-    QProcess::startDetached(MYCROFT_STOP_SCRIPT_PATH);
+    isRunning = shallRun;
+    if (shallRun)
+    {
+        QProcess::startDetached(MYCROFT_START_SCRIPT_PATH);
+    }
+    else
+    {
+        QProcess::startDetached(MYCROFT_STOP_SCRIPT_PATH);
+    }
 }
 
+bool MyCroftControl::getRunning()
+{
+    return isRunning;
+}
