@@ -9,6 +9,9 @@ MainView {
     width: units.gu(100)
 
     Page {
+        id: pageSettings
+        visible: backend.isInstalled
+
         header: PageHeader {
             id: pageHeader
             title: i18n.tr("MyCroft")
@@ -42,10 +45,6 @@ MainView {
                         checked: false
                         onCheckedChanged: backend.isRunning = checked
                     }
-
-                    MyCroftControl {
-                        id: backend
-                    }
                 }
 
                 Item { Layout.fillHeight: true }    // Spacer
@@ -54,7 +53,8 @@ MainView {
     }
 
     Page {
-        visible: false
+        id: pageInstall
+        visible: !backend.isInstalled
 
         header: PageHeader {
             id: pageHeader1
@@ -101,4 +101,12 @@ MainView {
         }
     }
 
+    MyCroftControl {
+        id: backend
+
+        onInstallFinished: {
+            pageInstall.visible = false;
+            pageSettings.visible = true;
+        }
+    }
 }

@@ -5,11 +5,11 @@
     "title": "MyCroft",
     "hooks": {
         "mycroft": {
-            "apparmor": "mycroft.hummlbach.apparmor",
-            "desktop": "mycroft.hummlbach.desktop"
+            "apparmor":  "mycroft.hummlbach.apparmor",
+            "desktop":   "mycroft.hummlbach.desktop"
         }
     },
-    "version": "0.1.0",
+    "version": "0.0.0-prealpha0",
     "maintainer": "Johannes Renkl <hummlbach@web.de>",
-    "framework": "ubuntu-sdk-16.04"
+    "framework": "ubuntu-sdk-15.04.4"
 }

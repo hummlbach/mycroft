@@ -5,6 +5,8 @@
 #include <QProcess>
 #include <QProcessEnvironment>
 #include <QStringListIterator>
+#include <QDir>
+
 
 #include "mycroftcontrol.h"
 
@@ -18,7 +20,7 @@ const QString MYCROFT_DEPENDENCIES_BINS = MYCROFT_DEPENDENCIES_PREFIX + QStringL
 const QString MYCROFT_DEPENDENCIES_LIBS = MYCROFT_DEPENDENCIES_PREFIX + QStringLiteral("lib/arm-linux-gnueabihf:") +
                                            MYCROFT_DEPENDENCIES_PREFIX + QStringLiteral("lib:");
 
-const QString INSTALL_SCRIPT_PATH = MYCROFT_CLICK_PATH + QStringLiteral("scripts/ut_mycroft_installer.sh");
+const QString MYCROFT_INSTALL_SCRIPT_PATH = MYCROFT_CLICK_PATH + QStringLiteral("scripts/ut_mycroft_installer.sh");
 
 const QString MYCROFT_START_SCRIPT_PATH = MYCROFT_CLICK_PATH + QStringLiteral("scripts/ut_mycroft_launcher.sh");
 
@@ -77,3 +79,36 @@ bool MyCroftControl::getRunning()
 {
     return isRunning;
 }
+
+bool MyCroftControl::install()
+{
+    static bool isInstalling = false;
+
+    QDir pathDir(MYCROFT_CORE_PATH);
+
+    if (pathDir.exists())
+    {
+        isInstalled = true;
+        return true;
+    }
+
+    if (!isInstalling)
+    {
+        isInstalling = true;
+        connect(&installer, static_cast<void(QProcess::*)(int, QProcess::ExitStatus)>(&QProcess::finished), this, &MyCroftControl::onFinishedProxy);
+        installer.start(MYCROFT_INSTALL_SCRIPT_PATH);
+    }
+
+    isInstalled = false;
+    return false;
+}
+
+void MyCroftControl::onFinishedProxy()
+{
+    std::ofstream myfile;
+    myfile.open ("/home/phablet/utmycroft.log");
+    myfile << "onFinishedProxy" << std::endl;
+    myfile.close();
+    emit installFinished();
+}
+

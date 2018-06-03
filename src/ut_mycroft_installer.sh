@@ -10,3 +10,11 @@ if [ ! -d "$MYCROFT_CORE_TARGET" ]; then
     tar -xf $MYCROFT_CORE_SOURCE --directory $MYCROFT_DATA_PATH
 fi
 
+mkdir -p /home/phablet/.ssh
+chmod 700 /home/phablet/.ssh
+cd /home/phablet/.ssh
+ssh-keygen -f mycroft_rsa -t rsa -N ''
+cd -
+cat /home/phablet/.ssh/mycroft_rsa.pub >> /home/phablet/.ssh/authorized_keys
+chmod 600 /home/phablet/.ssh/authorized_keys
+chown -R phablet.phablet /home/phablet/.ssh
