@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-05-27 13:38+0000\n"
+"POT-Creation-Date: 2018-06-03 20:44+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,10 +17,23 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: /home/tim/Dev/mycroft/ubuntu-touch/src/qml/Main.qml:21
+#: /home/humml/swdevel/git/mycroft/utmycroft/src/qml/Main.qml:17
 msgid "MyCroft"
 msgstr ""
 
-#: /home/tim/Dev/mycroft/ubuntu-touch/src/qml/Main.qml:33
-msgid "Experimental MyCroft package for Ubuntu Touch"
+#: /home/humml/swdevel/git/mycroft/utmycroft/src/qml/Main.qml:39
+#, qt-format
+msgid "Turn MyCroft %1"
+msgstr ""
+
+#: /home/humml/swdevel/git/mycroft/utmycroft/src/qml/Main.qml:61
+msgid "MyCroft - Installing"
+msgstr ""
+
+#: /home/humml/swdevel/git/mycroft/utmycroft/src/qml/Main.qml:80
+msgid "Preparing your installation ..."
+msgstr ""
+
+#: /home/humml/swdevel/git/mycroft/utmycroft/src/qml/Main.qml:86
+msgid "Please don't interrupt this process!"
 msgstr ""

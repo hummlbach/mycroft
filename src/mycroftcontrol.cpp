@@ -105,10 +105,6 @@ bool MyCroftControl::install()
 
 void MyCroftControl::onFinishedProxy()
 {
-    std::ofstream myfile;
-    myfile.open ("/home/phablet/utmycroft.log");
-    myfile << "onFinishedProxy" << std::endl;
-    myfile.close();
     emit installFinished();
 }
 
