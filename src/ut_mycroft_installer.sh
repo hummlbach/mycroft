@@ -11,6 +11,7 @@ if [ ! -d "$MYCROFT_CORE_TARGET" ]; then
 fi
 
 mkdir -p /home/phablet/.ssh
+mkdir -p /home/phablet/.cache/mycroft.hummlbach
 chmod 700 /home/phablet/.ssh
 cd /home/phablet/.ssh
 ssh-keygen -f mycroft_rsa -t rsa -N ''
